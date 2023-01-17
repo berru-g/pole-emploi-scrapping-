@@ -1,0 +1,1 @@
+const squares = document.querySelect
