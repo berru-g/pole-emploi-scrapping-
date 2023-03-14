@@ -1,19 +1,21 @@
+"""
+Pratiquer cela dans des environnements de test pour éviter de bloquer votre ip.
+from fake_useragent import UserAgent
+
+"""
 import requests
 from bs4 import BeautifulSoup
 
-# Send an HTTP request to the Pole Emploi job search page
-url = "https://candidat.pole-emploi.fr/offres/recherche" # URL de la page de recherche
-params = {'offresPartenaires': 'true', 'range': '0-9', 'rayon': '10', 'tri': '0', 'motsCles': 'dev front-end développeur web', 'lieux': '44'} 
-#headers = {'User-Agent': 'Mozilla/5.0'}
-#response = requests.get(url, headers=headers, params=params)
+# Send an HTTP request to the website
+url = "https://candidat.pole-emploi.fr/offres/emploi/developpeur-web/nantes/s29m2v6"
 response = requests.get(url)
 
 # Parse the HTML content
-soup = BeautifulSoup(response.content, "html.parser")
+soup = BeautifulSoup(response.text, "html.parser")
 
-# Find all the job listings
-job_listings = soup.find_all("li", class_="result")
+# Find all the elements with class "product-title"
+titles = soup.find_all(class_="media-heading-title")
 
-# Print the job listings
-for job_listing in job_listings:
-    print(job_listings.text)
+# Print the titles
+for title in titles:
+    print(title.text)
