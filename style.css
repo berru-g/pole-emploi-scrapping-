@@ -3,10 +3,33 @@
 body {
     font-family: "Lora", sans-serif;
     font-weight: 400;
+    background-color: #bfbebe;
 }
 
 header {
-    background-image: url('ttps://kinsta.com/wp-content/uploads/2018/09/linkedin-statistics.png');
-    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    color: #333;
+    padding: 1rem;
+}
+
+#logo{
+    max-width: 3rem;
     height: auto;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 1rem;
+}
+
+header nav select {
+    font-size: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: none;
+    background-color: #fff;
 }
