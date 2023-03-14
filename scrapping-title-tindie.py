@@ -1,7 +1,7 @@
 
 """
 SRC / OPENAI
-Il est important de pratiquer cela dans des environnements de test pour éviter de bloquer votre ip.
+Pratiquer cela dans des environnements de test pour éviter de bloquer votre ip.
 from fake_useragent import UserAgent
 
 ua = UserAgent()
