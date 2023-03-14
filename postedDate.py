@@ -15,4 +15,4 @@ job_listings = soup.find_all("li", class_="result-card")
 
 # Print the sorted job listings
 for job_listing in job_listings:
-    print job listing information
+    print (job.text)
