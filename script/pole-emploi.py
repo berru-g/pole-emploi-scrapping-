@@ -11,7 +11,7 @@ import requests
 from bs4 import BeautifulSoup
 #STEP 1
 # Send an HTTP request to the website // change lieux={} &motscles={}
-url = "https://candidat.pole-emploi.fr/offres/recherche?lieux={44109}&motsCles={serveur}&offresPartenaires=true&rayon=10&tri=0" #caution: last url is 
+url = "https://candidat.pole-emploi.fr/offres/recherche?lieux=44109&motsCles=frontend&offresPartenaires=true&rayon=10&tri=0" #caution: last url is 
 response = requests.get(url)
 
 # Parse the HTML content

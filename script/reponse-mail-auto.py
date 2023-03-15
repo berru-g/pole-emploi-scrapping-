@@ -3,13 +3,6 @@ from bs4 import BeautifulSoup
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from email.mime.application import MIMEApplication
-
-# Set up the email parameters
-sender_email = "votre_adresse_email@gmail.com"
-sender_password = "votre_mot_de_passe"
-receiver_email = "adresse_email_du_destinataire@gmail.com"
-mail_subject = "Candidature pour l'offre d'emploi"
 
 # Send an HTTP request to the website
 url = "https://candidat.pole-emploi.fr/offres/emploi/developpeur-web/nantes/s29m2v6"
@@ -18,27 +11,43 @@ response = requests.get(url)
 # Parse the HTML content
 soup = BeautifulSoup(response.text, "html.parser")
 
-# Find the link to the offer page
-offer_link = soup.find("a", class_="media-heading-link")["href"]
-
-# Send an HTTP request to the offer page
-offer_response = requests.get(offer_link)
-
-# Parse the HTML content of the offer page
-offer_soup = BeautifulSoup(offer_response.text, "html.parser")
+# Find all the elements with class "product-title"
+titles = soup.find_all(class_="media-heading-title")
 
 # Find the email of the recruiter
-recruiter_email = offer_soup.find("a", {"href": "mailto:"})["href"].split(":")[1]
+email_elem = soup.find(class_="email-recruiter")
+if email_elem:
+    email = email_elem.text
+else:
+    email = None  # ou une autre valeur par défaut si nécessaire
 
-# Create the email message
-mail_body = "Bonjour,\n\nJe vous écris pour vous proposer ma candidature pour l'offre d'emploi de développeur web à Nantes. Vous trouverez ci-joint mon CV.\n\nCordialement,\nGael-berru"
-message = MIMEMultipart()
-message.attach(MIMEText(mail_body, "plain"))
-cv_attachment = MIMEApplication(open("chemin_vers_votre_cv.pdf", "rb").read(), _subtype="pdf")
-cv_attachment.add_header("Content-Disposition", "attachment", filename="cv.pdf")
-message.attach(cv_attachment)
-message["Subject"] = mail_subject
-message["From"] = sender_email
-message["To"] = receiver_email
 
-#
+# Create a message
+msg = MIMEMultipart()
+msg['From'] = 'g.leberruyer@gmail.com'  # Replace with your email address
+msg['To'] = email
+msg['Subject'] = 'Offre d\'emploi : ' + titles[0].text
+
+# Add a message body
+message = 'Bonjour,\n\nJe suis intéressé(e) par votre offre d\'emploi intitulée "' + titles[0].text + '". Pouvez-vous me fournir plus d\'informations ?\n\nCordialement,\nGithub.com/berru-g'
+msg.attach(MIMEText(message))
+
+# Connect to the SMTP server
+smtp_server = 'smtp.gmail.com'  # Replace with the SMTP server of your email provider
+smtp_port = 587  # Replace with the SMTP port of your email provider
+username = 'g.leberruyer@gmail.com'  # Replace with your email address
+password = 'your_password'  # Replace with your email password
+server = smtplib.SMTP(smtp_server, smtp_port)
+server.starttls()
+server.login(username, password)
+
+# Send the message
+text = msg.as_string()
+server.sendmail(username, email, text)
+
+# Close the SMTP server
+server.quit()
+
+# Print the titles
+for title in titles:
+    print(title.text)
