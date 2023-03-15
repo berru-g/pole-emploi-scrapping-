@@ -7,14 +7,14 @@ job = input("Entrez le titre du poste: ")
 location = input("Entrez l'emplacement: ")
 
 # URL templates for each site
-poleemploi_url = "https://candidat.pole-emploi.fr/offres/emploi/&job={}/&location={}/"
+poleemploi_url = "https://candidat.pole-emploi.fr/offres/emploi/&job={}/&location={}/"  # probleme avec un code aléatoire en fin d'url
 # = "https://candidat.pole-emploi.fr/offres/recherche?lieux={}&motsCles={}&{}.format(lieux, mots_cles, identifiant)"
-
 codeur_url = "https://www.codeur.com/projects?query={}&location={}"
 indeed_url = "https://fr.indeed.com/emplois?q={}&l={}"
 
 # Search Pole Emploi
-poleemploi_search = requests.get(poleemploi_url.format(job, location))
+#poleemploi_search = requests.get(poleemploi_url.format(job, location))
+poleemploi_search = requests.get(poleemploi_url)
 poleemploi_soup = BeautifulSoup(poleemploi_search.text, "html.parser")
 poleemploi_titles = poleemploi_soup.find_all(class_="media-heading-title")
 
