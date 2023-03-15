@@ -7,8 +7,10 @@ job = input("Entrez le titre du poste: ")
 location = input("Entrez l'emplacement: ")
 
 # URL templates for each site
-poleemploi_url = "https://candidat.pole-emploi.fr/offres/emploi/&job={}/&location={}/"  # probleme avec un code aléatoire en fin d'url
-# = "https://candidat.pole-emploi.fr/offres/recherche?lieux={}&motsCles={}&{}.format(lieux, mots_cles, identifiant)"
+#poleemploi_url = "https://candidat.pole-emploi.fr/offres/emploi/&job={}/&location={}/"  # probleme avec un code aléatoire en fin d'url
+poleemploi_url = "https://candidat.pole-emploi.fr/offres/recherche?lieux={}&motsCles={}&offresPartenaires=true&rayon=10&tri=0"   
+# &{}.format(lieux, mots_cles, identifiant)"
+#https://candidat.pole-emploi.fr/offres/recherche?lieux=44109&motsCles=fullstack&offresPartenaires=true&rayon=10&tri=0
 codeur_url = "https://www.codeur.com/projects?query={}&location={}"
 indeed_url = "https://fr.indeed.com/emplois?q={}&l={}"
 
