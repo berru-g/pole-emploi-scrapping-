@@ -35,8 +35,8 @@ msg.attach(MIMEText(message))
 # Connect to the SMTP server
 smtp_server = 'smtp.gmail.com'  # Replace with the SMTP server of your email provider
 smtp_port = 587  # Replace with the SMTP port of your email provider
-username = "g.leberruyer"  # Replace with your email address
-password = "mdp"  # Replace with your email password
+username = 'g.leberruyer@gmail.com'  # Replace with your email address
+password = 'mdp'  # Replace with your email password
 server = smtplib.SMTP(smtp_server, smtp_port)
 server.starttls()
 server.login(username, password) #bug sur la "réponse"
