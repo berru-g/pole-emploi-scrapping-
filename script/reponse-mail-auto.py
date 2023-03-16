@@ -39,7 +39,7 @@ username = "g.leberruyer"  # Replace with your email address
 password = "mdp"  # Replace with your email password
 server = smtplib.SMTP(smtp_server, smtp_port)
 server.starttls()
-server.login(username, password)
+server.login(username, password) #bug sur la "réponse"
 
 # Send the message
 text = msg.as_string()

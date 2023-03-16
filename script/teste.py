@@ -11,23 +11,23 @@ import requests
 from bs4 import BeautifulSoup
 #STEP 1
 # Send an HTTP request to the website // change lieux={} &motscles={}
-url = "https://candidat.pole-emploi.fr/offres/recherche?lieux=44109&motsCles=formation&offresPartenaires=true&rayon=10&tri=0" #caution: last url is 
-response = requests.get(url)
+in_url = "https://fr.indeed.com/jobs?q=d%C3%A9veloppeur+web&l=Rez%C3%A9+%2844%29&vjk=52ed5b81115cbba2" #caution: last in_url is 
+in_response = requests.get(in_url)
 
 # Parse the HTML content
-soup = BeautifulSoup(response.text, "html.parser")
+soup = BeautifulSoup(in_response.text, "html.parser")
 
 # Find all the elements with class "product-title"
-titles = soup.find_all(class_="media-heading-title")
-subtitles = soup.find_all(class_="subtext")
+in_titles = soup.find_all(class_="jcs-JobTitle css-jspxzf eu4oa1w0")
+in_subtitles = soup.find_all(class_="turnstileLink companyOverviewLink")
 date = soup.find_all(class_="date")
 
 # Print the titles
-for title in titles:
-    for subtitles in subtitles:
+for title in in_titles:
+    for subtitles in in_subtitles:
         for date in date:
             print(title.text)
-            print(subtitles.text)
+            print(in_subtitles.text)
             print(date.text)
             
 print("Fin des offres")
