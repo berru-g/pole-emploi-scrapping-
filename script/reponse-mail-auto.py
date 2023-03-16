@@ -35,12 +35,37 @@ msg.attach(MIMEText(message))
 # Connect to the SMTP server
 smtp_server = 'smtp.gmail.com'  # Replace with the SMTP server of your email provider
 smtp_port = 587  # Replace with the SMTP port of your email provider
-username = 'g.leberruyer@gmail.com'  # Replace with your email address
+username = 'name'  # Replace with your email address
 password = 'mdp'  # Replace with your email password
 server = smtplib.SMTP(smtp_server, smtp_port)
 server.starttls()
 server.login(username, password) #bug sur la "réponse"
+"""
+Serveur de courrier entrant (IMAP) 	
 
+imap.gmail.com
+
+SSL requis : oui
+
+Port : 993
+Serveur de courrier sortant (SMTP) : 	
+
+smtp.gmail.com
+
+SSL requis : oui
+
+TLS requis : oui (si disponible)
+
+Authentification requise : oui
+
+Port pour SSL : 465
+
+Port pour TLS/STARTTLS : 587
+Nom complet ou nom à afficher 	Votre nom
+Nom de compte, nom d'utilisateur ou adresse e-mail 	Votre adresse e-mail complète
+Mot de passe 	Votre mot de passe Gmail
+
+"""
 # Send the message
 text = msg.as_string()
 server.sendmail(username, email, text)
