@@ -1,6 +1,7 @@
 """    Learn python 
       github/berru-g 23
 """
+#next step: use title, subtitle & date - ex: poleemploi.py
 from pyautogui import sleep
 import requests
 from bs4 import BeautifulSoup
@@ -32,10 +33,18 @@ for title in poleemploi_titles:
     print(title.text)
     
 
-"""print("Résultats de la recherche sur Pole Emploi:")
-print(poleemploi_search.content)
+"""subtitles = soup.find_all(class_="subtext")
+dates = soup.find_all(class_="date")
+
+print("Résultats de la recherche sur Pole Emploi:")
+
+# Print the titles
 for title in poleemploi_titles:
-    print(title.find(class_="title").text)"""
+    for subtitle in subtitles:
+        for date in dates:
+            print(titles.text)
+            print(subtitles.text)
+            print(dates.text)"""
 
 sleep(1)
 
