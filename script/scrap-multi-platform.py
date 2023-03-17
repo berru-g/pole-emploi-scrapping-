@@ -19,22 +19,15 @@ location = input("")
 # URL templates for each site
 #poleemploi_url = "https://candidat.pole-emploi.fr/offres/recherche?lieux={}&motsCles={}&offresPartenaires=true&rayon=10&tri=0"
 poleemploi_url = "https://candidat.pole-emploi.fr/offres/recherche?&motsCles={}&lieux{}&offresPartenaires=true&rayon=10&tri=0"
-codeur_url = "https://www.codeur.com/projects?query={}&location={}"
-indeed_url = "https://fr.indeed.com/emplois?q={}&l={}"
+jeudisdotcom_url = "https://www.lesjeudis.com/recherche?keywords={}&location={}"
+indeed_url = "https://fr.indeed.com/emplois?q={}&l={}&vjk=52ed5b81115cbba2"
 
 # Search Pole Emploi
 poleemploi_search = requests.get(poleemploi_url.format(job, location))
 poleemploi_soup = BeautifulSoup(poleemploi_search.text, "html.parser")
 poleemploi_titles = poleemploi_soup.find_all(class_="media-heading-title")
-
-print("Résultats de la recherche sur Pole Emploi:")
-
-for title in poleemploi_titles:
-    print(title.text)
-    
-
-"""subtitles = soup.find_all(class_="subtext")
-dates = soup.find_all(class_="date")
+subtitles = poleemploi_soup.find_all(class_="subtext")
+dates = poleemploi_soup.find_all(class_="date")
 
 print("Résultats de la recherche sur Pole Emploi:")
 
@@ -42,27 +35,28 @@ print("Résultats de la recherche sur Pole Emploi:")
 for title in poleemploi_titles:
     for subtitle in subtitles:
         for date in dates:
-            print(titles.text)
-            print(subtitles.text)
-            print(dates.text)"""
+            print(title.text)
+            print(subtitle.text)
+            print(date.text)
+            print("__________")
 
 sleep(1)
 
-# Search Codeur.com
-codeur_search = requests.get(codeur_url.format(job, location))
-codeur_soup = BeautifulSoup(codeur_search.text, "html.parser")
-codeur_titles = codeur_soup.find_all(class_="card__title")
+# Search jeudisdotcom.com
+jeudisdotcom_search = requests.get(jeudisdotcom_url.format(job, location))
+jeudisdotcom_soup = BeautifulSoup(jeudisdotcom_search.text, "html.parser")
+jeudisdotcom_titles = jeudisdotcom_soup.find_all(class_=["data-results-title.dark-blue-text.b" , "data-results-content block job-listing-item"])
 
-print("Résultats de la recherche sur Codeur.com:")
-for title in codeur_titles:
-    print(title.text.strip())
+print("Résultats de la recherche sur jeudis.com:")
+for title in jeudisdotcom_titles:
+    print(title.text)
 
 sleep(1)
-
+ 
 # Search Indeed.com
 indeed_search = requests.get(indeed_url.format(job, location))
 indeed_soup = BeautifulSoup(indeed_search.text, "html.parser")
-indeed_titles = indeed_soup.find_all(class_="jcs-JobTitle css-jspxzf eu4oa1w0") # [.,.] recup une class si l'autre n'existe pas. # [.,.] recup une class si l'autre n'existe pas.
+indeed_titles = indeed_soup.find_all(id_=["jobTitle-37b88858c4da5049", "jobTitle css-1h4a4n5 eu4oa1w0"]) # [.,.] recup une class si l'autre n'existe pas. # [.,.] recup une class si l'autre n'existe pas.
 
 print("Résultats de la recherche sur Indeed.com:")
 for title in indeed_titles:
