@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-#from script-otto import reponse-mail-auto
+import os
 
 # Get user input for job and location
 print("Entrez le titre du poste:")
@@ -53,8 +53,7 @@ sleep(1)
 # Search Indeed.com
 indeed_search = requests.get(indeed_url.format(job, location))
 indeed_soup = BeautifulSoup(indeed_search.text, "html.parser")
-indeed_titles = indeed_soup.find_all(class_=["jobTitle css-1h4a4n5 eu4oa1w0", "jcs-JobTitle.css-jspxzf.eu4oa1w0"]) # [.,.] recup une class si l'autre n'existe pas.
-#indeed_titles = indeed_soup.find_all(class_="jcs-JobTitle.css-jspxzf.eu4oa1w0") # [.,.] recup une class si l'autre n'existe pas.
+indeed_titles = indeed_soup.find_all(class_="jcs-JobTitle css-jspxzf eu4oa1w0") # [.,.] recup une class si l'autre n'existe pas. # [.,.] recup une class si l'autre n'existe pas.
 
 print("Résultats de la recherche sur Indeed.com:")
 for title in indeed_titles:
@@ -69,17 +68,19 @@ print("Voulez-vous envoyer un mail groupé oui/non ?")
 
 reponse = input()
 
-# Afficher un message en fonction de la réponse
+# A refaire// inserer le script et non louvrir!!!
+
 if reponse.lower() == "oui":
-    # Ouvrir le fichier
-    nom_fichier = "reponse-mail-auto.py" 
-    with open(nom_fichier, 'r') as f:
-        contenu = f.read()
-        print(contenu)
+    # Lancer le script Python
+    nom_script = "reponse-mail-auto.py" 
+    if os.path.isfile(nom_script):
+        os.system("python " + nom_script)
+    else:
+        # Afficher un message si le script n'existe pas
+        print("Le script rencontre un probleme.")
+              
 elif reponse.lower() == "non":
     # Afficher un message si la réponse est "non" et quitter le programme
     print("Merci d'avoir utilisé notre programme.")
+    print("Aidez nous à améliorer cet outil, rdv sur github.com/berru-g")
     exit()
-else:
-    # Afficher un message si la réponse n'est ni "oui" ni "non"
-    print("Aidez nous à améliorer cet outils, rdv sur github.com/berru-g")
