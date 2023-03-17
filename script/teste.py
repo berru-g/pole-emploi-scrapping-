@@ -11,15 +11,15 @@ in_response = requests.get(in_url)
 soup = BeautifulSoup(in_response.text, "html.parser")
 
 # Find all the elements with class "product-title"
-in_titles = soup.find_all(class_="jcs-JobTitle")
-in_subtitles = soup.find_all(class_="subtext")
-date = soup.find_all(class_="date")
+in_titles = soup.find(class_="jcs-JobTitle")
+in_subtitles = soup.find(class_="subtext")
+date = soup.find(class_="date")
 
 # Print the titles
 for title in in_titles:
     for subtitles in in_subtitles:
         for date in date:
-            print(title.text)
+            print(in_titles.text)
             print(in_subtitles.text)
             print(date.text)
             

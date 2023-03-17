@@ -11,7 +11,7 @@ import requests
 from bs4 import BeautifulSoup
 #STEP 1
 # Send an HTTP request to the website // change lieux={} &motscles={}
-url = "https://candidat.pole-emploi.fr/offres/recherche?lieux=44109&motsCles=formation&offresPartenaires=true&rayon=10&tri=0" #caution: last url is 
+url = "https://candidat.pole-emploi.fr/offres/recherche?lieux=44109&motsCles=devloppeur-web&offresPartenaires=true&rayon=10&tri=0" #caution: last url is 
 response = requests.get(url)
 
 # Parse the HTML content
@@ -20,17 +20,42 @@ soup = BeautifulSoup(response.text, "html.parser")
 # Find all the elements with class "product-title"
 titles = soup.find_all(class_="media-heading-title")
 subtitles = soup.find_all(class_="subtext")
-date = soup.find_all(class_="date")
+dates = soup.find_all(class_="date")
 
 # Print the titles
+for title in titles:
+    for subtitle in subtitles:
+        for date in dates:
+            print(titles.text)
+            print(subtitles.text)
+            print(dates.text)
+            
+            
+print("Fin des offres pole emploi")
+
+
+url = "https://www.lesjeudis.com/recherche?keywords=developpeur+web&location=nantes" #caution: last url is 
+response = requests.get(url)
+
+# Parse the HTML content
+soup = BeautifulSoup(response.text, "html.parser")
+
+# Find all the elements with class "product-title"
+titles = soup.find_all(class_="data-results-title")
+subtitles = soup.find_all(class_="data-details")
+date = soup.find_all(class_="block")
+
+"""# Print the titles
 for title in titles:
     for subtitles in subtitles:
         for date in date:
             print(title.text)
             print(subtitles.text)
-            print(date.text)
+            print(date.text)"""
+for title in titles:
+    print(titles.text)
             
-print("Fin des offres")
+print("Fin des offres les jeudis.com")
     
     
 """
