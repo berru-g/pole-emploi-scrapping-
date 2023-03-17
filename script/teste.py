@@ -1,28 +1,65 @@
+"""print("Bienvenue dans notre programme de question-réponse")
 
-from pyautogui import sleep 
-import requests
-from bs4 import BeautifulSoup
-#STEP 1
-# Send an HTTP request to the website // change lieux={} &motscles={}
-in_url = "https://fr.indeed.com/jobs?q=d%C3%A9veloppeur+web&l=Rez%C3%A9+%2844%29&vjk=52ed5b81115cbba2" #caution: last in_url is 
-in_response = requests.get(in_url)
+# Poser une question
+print("Quel est votre nom?")
+nom = input()
 
-# Parse the HTML content
-soup = BeautifulSoup(in_response.text, "html.parser")
+# Afficher la réponse
+print("Bonjour, " + nom + "!")
 
-# Find all the elements with class "product-title"
-in_titles = soup.find(class_="jcs-JobTitle")
-in_subtitles = soup.find(class_="subtext")
-date = soup.find(class_="date")
+# Poser une question avec plusieurs choix de réponses
+print("Aimez-vous les chats ou les chiens?")
+reponse = input()
 
-# Print the titles
-for title in in_titles:
-    for subtitles in in_subtitles:
-        for date in date:
-            print(in_titles.text)
-            print(in_subtitles.text)
-            print(date.text)
-            
-print("Fin des offres")
-    
-    
+# Afficher un message en fonction de la réponse
+if reponse.lower() == "chats":
+    print("Les chats sont géniaux!")
+elif reponse.lower() == "chiens":
+    print("Les chiens sont fantastiques!")
+else:
+    print("Je ne comprends pas votre réponse.")
+
+# Poser une question fermée avec une réponse par oui ou non
+print("Avez-vous déjà visité Paris?")
+reponse = input()
+
+# Afficher un message en fonction de la réponse
+if reponse.lower() == "oui":
+    print("Paris est une ville magnifique!")
+elif reponse.lower() == "non":
+    print("Vous devriez visiter Paris un jour!")
+else:
+    print("Je ne comprends pas votre réponse.")
+
+# Fin du programme
+print("Merci d'avoir utilisé notre programme de question-réponse.")"""
+
+#############
+import os
+
+print("Voulez-vous ouvrir un fichier se trouvant dans votre dossier?")
+
+# Poser une question fermée avec une réponse par oui ou non
+reponse = input()
+
+# Afficher un message en fonction de la réponse
+if reponse.lower() == "oui":
+    # Demander le nom du fichier à ouvrir
+    print("Quel est le nom du fichier que vous souhaitez ouvrir?")
+    nom_fichier = input()
+    # Vérifier si le fichier existe
+    if os.path.isfile(nom_fichier):
+        # Ouvrir le fichier
+        with open(nom_fichier, 'r') as f:
+            contenu = f.read()
+            print(contenu)
+    else:
+        # Afficher un message si le fichier n'existe pas
+        print("Le fichier que vous avez entré n'existe pas.")
+elif reponse.lower() == "non":
+    # Afficher un message si la réponse est "non"
+    print("Vous avez choisi de ne pas ouvrir de fichier.")
+else:
+    # Afficher un message si la réponse n'est ni "oui" ni "non"
+    print("Je ne comprends pas votre réponse.")
+
