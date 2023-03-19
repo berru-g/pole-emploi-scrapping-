@@ -56,7 +56,7 @@ sleep(1)
 # Search Indeed.com
 indeed_search = requests.get(indeed_url.format(job, location))
 indeed_soup = BeautifulSoup(indeed_search.text, "html.parser")
-indeed_titles = indeed_soup.find_all(id_=["jobTitle-37b88858c4da5049", "jobTitle css-1h4a4n5 eu4oa1w0"]) # [.,.] recup une class si l'autre n'existe pas. # [.,.] recup une class si l'autre n'existe pas.
+indeed_titles = indeed_soup.find_all(id_=["jobTitle-37b88858c4da5049","jobTitle css-1h4a4n5 eu4oa1w0"]) # [.,.] recup une class si l'autre n'existe pas. # [.,.] recup une class si l'autre n'existe pas.
 
 print("Résultats de la recherche sur Indeed.com:")
 for title in indeed_titles:

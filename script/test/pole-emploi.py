@@ -11,16 +11,16 @@ import requests
 from bs4 import BeautifulSoup
 #STEP 1
 # Send an HTTP request to the website // change lieux={} &motscles={}
-url = "https://candidat.pole-emploi.fr/offres/recherche?lieux=44109&motsCles=devloppeur-web&offresPartenaires=true&rayon=10&tri=0" #caution: last url is 
+url = "https://www.welcometothejungle.com/fr/jobs?groupBy=job&page=1&query=developpeur&sortBy=mostRelevant&aroundQuery=Nantes%2C%20France&aroundLatLng=47.21811%2C-1.55302&aroundRadius=20000" #caution: last url is 
 response = requests.get(url)
 
 # Parse the HTML content
 soup = BeautifulSoup(response.text, "html.parser")
 
 # Find all the elements with class "product-title"
-titles = soup.find_all(class_="media-heading-title")
-subtitles = soup.find_all(class_="subtext")
-dates = soup.find_all(class_="date")
+titles = soup.find_all(class_="sc-cwSeag-hlqow9-0-bOAYwm")
+subtitles = soup.find_all(class_="sc-16yjgsd-0.haea-DT")
+dates = soup.find_all(class_="sc-16yjgsd-0-haea-DT")
 
 # Print the titles
 for title in titles:
@@ -31,8 +31,8 @@ for title in titles:
             print(dates.text)
             
             
-print("Fin des offres pole emploi")
-
+print("Fin des offres welcometothejungle.com")
+sleep(1)
 
 url = "https://www.lesjeudis.com/recherche?keywords=developpeur+web&location=nantes" #caution: last url is 
 response = requests.get(url)
@@ -56,10 +56,10 @@ for title in titles:
     print(titles.text)
             
 print("Fin des offres les jeudis.com")
-    
-    
-"""
-#STEP 3
+sleep(1)
+exit()
+
+"""#STEP 3
 send_url = "https://candidat.pole-emploi.fr/offres/emploi/developpeur-web/nantes/s29m2v6" #caution: last url is 
 offer_response = requests.get(send_url)
 # Find the link to the offer page
@@ -75,6 +75,6 @@ offer_soup = BeautifulSoup(offer_response.text, "html.parser")
 recruiter_email = offer_soup.find("a", {"href": "mailto:"})["href"].split(":")[1]
 
 for offer_link in offer_link:
-    print(offer_link.text)
+    print(offer_link.text)"""
     
-"""
+
