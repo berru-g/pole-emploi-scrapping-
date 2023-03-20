@@ -8,8 +8,8 @@
     input location
     secondsite_url & thirdsite_url*
 
-<img width="496" alt="interface" src="https://user-images.githubusercontent.com/61543927/226321160-0c01a69c-74b0-4963-a57b-cf7b27a8b912.png">
 
+<img width="497" alt="interface (2)" src="https://user-images.githubusercontent.com/61543927/226380254-d6010932-0320-433e-8787-03a2085201d6.png">
 
 <h2>Etapes de recherche et conception</h2>
 
@@ -23,6 +23,14 @@
     pip install bs4
     pip install requests
     pip install Linkedin
+    pip install tkinter 
+    pip install BeautifulSoup
+    pip install smtplib
+    pip install MIMEText
+    pip installMIMEMultipart
+    pip installMIMEBase
+    pip installCOMMASPACE
+    pip installencoders
 
 <p>3 - Définire les mots-clés à rechercher dans les annonces d'emploi</p>
 
@@ -41,9 +49,9 @@
 
 <h3> Récupèrer les dernières annonces d'offres d'emploi spécifique de pôle emploi en un click</h3>
 
-<p>Lien de télechargement du <a href="https://github.com/berru-g/Linkedin-job-search-and-automatic-response"> fichier source</a> sur Github</p>
+<p>Lien de télechargement du <a href="https://github.com/berru-g/Multiplatform-job-search-and-automatic-response"> fichier source</a> sur Github</p>
 
-<p>Créer un executable de votre <a href="https://www.youtube.com/watch?v=Jji2ik_AQOg&t=90s
+<p>Créer un executable du script <a href="https://www.youtube.com/watch?v=Jji2ik_AQOg&t=90s
 ">script et fichier source</a>.</p>
 
 
