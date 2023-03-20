@@ -54,7 +54,7 @@ def search():
         results_text.insert(tk.END, f"{title.text}\n{subtitle.text}\n{date.text}\n__________\n")
     time.sleep(1)    
     results_text.insert(tk.END, "Résultats de la recherche sur Indeed:\n\n", "blue")
-    results_text.tag_configure("blue", foreground="#1d3557")
+    results_text.tag_configure("blue", foreground="blue")
     for title, subtitle, date in zip(thirdsite_titles, subtitles, dates):
         results_text.insert(tk.END, f"{title.text}\n{subtitle.text}\n{date.text}\n__________\n")
         
@@ -122,17 +122,16 @@ root.title("Recherche d'emploi multiplatform en un click")
 #root.iconbitmap('src\logo.png')
 p1 = tk.PhotoImage(file = 'src\logo.png')
 root.iconphoto(False, p1)
-root.config(bg="#1d3557")  # définit la couleur de fond en gris clair
+root.config(bg="#457b9d")  # définit la couleur de fond en gris clair
 
-job_label = tk.Label(root, text="Rechercher métier:", foreground="#f1faee")
-job_label.grid(row=1, column=0, padx=10, pady=10)
-job_label.config(bg="#1d3557")
+
+job_label = tk.Label(root, text="Titre du poste")
+job_label.grid(row=0, column=0, padx=10, pady=10)
 job_entry = tk.Entry(root)
 job_entry.grid(row=0, column=1, padx=10, pady=10)
 
-location_label = tk.Label(root, text="Lieux", foreground="#f1faee")
-location_label.grid(row=0, column=0, padx=10, pady=10)
-location_label.config(bg="#1d3557")
+location_label = tk.Label(root, text="Lieux")
+location_label.grid(row=1, column=0, padx=10, pady=10)
 location_entry = tk.Entry(root)
 location_entry.grid(row=1, column=1, padx=10, pady=10)
 
