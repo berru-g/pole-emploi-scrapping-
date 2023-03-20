@@ -1,6 +1,7 @@
 """    Learn python 
       github/berru-g 23
       scrp-multi-platform-V-1.0
+      A convertir en envoie de dossier pour location de logement, 
 """
 import tkinter as tk
 import requests
@@ -88,7 +89,7 @@ job_label.grid(row=0, column=0, padx=10, pady=10)
 job_entry = tk.Entry(root)
 job_entry.grid(row=0, column=1, padx=10, pady=10)
 
-location_label = tk.Label(root, text="Emplacement")
+location_label = tk.Label(root, text="Lieux")
 location_label.grid(row=1, column=0, padx=10, pady=10)
 location_entry = tk.Entry(root)
 location_entry.grid(row=1, column=1, padx=10, pady=10)
@@ -97,7 +98,7 @@ search_button = tk.Button(root, text="Rechercher", command=search)
 search_button.grid(row=2, column=0, columnspan=2, padx=10, pady=10)
 
 send_button = tk.Button(root, text="Envoie CV groupé", command=send)
-send_button.grid(row=2, column=1, columnspan=3, padx=10, pady=10)
+send_button.grid(row=2, column=1, columnspan=2, padx=10, pady=10)
 
 results_text = tk.Text(root)
 results_text.grid(row=3, column=0, columnspan=2, padx=10, pady=10)
