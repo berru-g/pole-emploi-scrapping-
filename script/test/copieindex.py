@@ -18,9 +18,7 @@ def search():
     job = job_entry.get()
     location = location_entry.get()
     firstsite_url = "https://candidat.pole-emploi.fr/offres/recherche?&motsCles={}&lieux{}&offresPartenaires=true&rayon=10&tri=0" # 'location' not taken into account. because not "=" in url? 
-    #secondsite_url = "https://www.lesjeudis.com/recherche?keywords={}&location={}"
     secondsite_url ="https://www.hellowork.com/fr-fr/emploi/recherche.html?k={}&k_autocomplete=&l={}"
-    #                
     thirdsite_url = "https://fr.indeed.com/emplois?q={}&l={}&ts=1679063051667&rq=1&fromage=last&vjk=1ed294ef94cee87a"
     # search firstsite.com  # bug de la requete 'location', essaie d'inverser lieux et motcles comme dans lurl dorigine, puis change l'ordre de format, job, location= sans succes
     firstsite_search = requests.get(firstsite_url.format(job,location))
