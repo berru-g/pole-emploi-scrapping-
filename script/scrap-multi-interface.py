@@ -13,54 +13,56 @@ from email.mime.multipart import MIMEMultipart
 def search():
     job = job_entry.get()
     location = location_entry.get()
-    poleemploi_url = "https://candidat.pole-emploi.fr/offres/recherche?&motsCles={}&lieux{}&offresPartenaires=true&rayon=10&tri=0" # 'location' not taken into account. because not "=" in url? 
-    jeudisdotcom_url = "https://www.lesjeudis.com/recherche?keywords={}&location={}"
-    indeed_url = "https://fr.indeed.com/emplois?q={}&l={}&vjk=52ed5b81115cbba2"
+    #                https://candidat.pole-emploi.fr/offres/recherche?lieux=44109&motsCles=fullstack&offresPartenaires=true&range=0-19&rayon=10&tri=0
+    firstsite_url = "https://candidat.pole-emploi.fr/offres/recherche?&motsCles={}&lieux{}&offresPartenaires=true&rayon=10&tri=0" # 'location' not taken into account. because not "=" in url? 
+    secondsite_url = "https://www.lesjeudis.com/recherche?keywords={}&location={}"
+    thirdsite_url = "https://fr.indeed.com/emplois?q={}&l={}"
     # search popol
-    poleemploi_search = requests.get(poleemploi_url.format(job, location))
-    poleemploi_soup = BeautifulSoup(poleemploi_search.text, "html.parser")
-    poleemploi_titles = poleemploi_soup.find_all(class_="media-heading-title")
-    subtitles = poleemploi_soup.find_all(class_="subtext")
-    dates = poleemploi_soup.find_all(class_="date")
-    # Search jeudisdotcom.com
-    jeudisdotcom_search = requests.get(jeudisdotcom_url.format(job, location))
-    jeudisdotcom_soup = BeautifulSoup(jeudisdotcom_search.text, "html.parser")
-    jeudisdotcom_titles = jeudisdotcom_soup.find_all(class_=["data-results-title.dark-blue-text.b" , "data-results-content block job-listing-item"])
-    #sub class
-    #date class
-    # Search Indeed.com
-    indeed_search = requests.get(indeed_url.format(job, location))
-    indeed_soup = BeautifulSoup(indeed_search.text, "html.parser")
-    indeed_titles = indeed_soup.find_all(id_=["jobTitle-37b88858c4da5049","jobTitle css-1h4a4n5 eu4oa1w0"]) # [.,.] recup une class si l'autre n'existe pas. # [.,.] recup une class si l'autre n'existe pas.
+    firstsite_search = requests.get(firstsite_url.format(job, location))
+    firstsite_soup = BeautifulSoup(firstsite_search.text, "html.parser")
+    firstsite_titles = firstsite_soup.find_all(class_="media-heading-title")
+    subtitles = firstsite_soup.find_all(class_="subtext")
+    dates = firstsite_soup.find_all(class_="date")
+    # Search secondsite.com
+    secondsite_search = requests.get(secondsite_url.format(job, location))
+    secondsite_soup = BeautifulSoup(secondsite_search.text, "html.parser")
+    secondsite_titles = secondsite_soup.find_all(class_="data-results-title dark-blue-text b")
+    secondsite_subtitles = secondsite_soup.find_all(class_="data-details")
+    secondsite_dates = secondsite_soup.find_all(class_="data-results-publish-time")
+     
+    # Search thirdsite.com
+    thirdsite_search = requests.get(thirdsite_url.format(job, location))
+    thirdsite_soup = BeautifulSoup(thirdsite_search.text, "html.parser")
+    thirdsite_titles = thirdsite_soup.find_all(id_="jcs-JobTitle css-jspxzf eu4oa1w0") # [.,.] recup une class si l'autre n'existe pas. # [.,.] recup une class si l'autre n'existe pas.
     #sub class
     #date class
     
     results_text.delete('1.0', tk.END)  # Effacer le contenu de la zone de texte des résultats précédents
-    
     results_text.insert(tk.END, "Résultats de la recherche sur Pole Emploi:\n\n")
-    for title, subtitle, date in zip(poleemploi_titles, subtitles, dates):
+    for title, subtitle, date in zip(firstsite_titles, subtitles, dates):
         results_text.insert(tk.END, f"{title.text}\n{subtitle.text}\n{date.text}\n__________\n")
         
     results_text.insert(tk.END, "Résultats de la recherche les jeudis.com:\n\n")
-    for title, subtitle, date in zip(jeudisdotcom_titles, subtitles, dates):
+    for title, subtitle, date in zip(secondsite_titles, secondsite_subtitles, secondsite_dates):
         results_text.insert(tk.END, f"{title.text}\n{subtitle.text}\n{date.text}\n__________\n")
         
-    results_text.insert(tk.END, "Résultats de la recherche sur Indeed:\n\n")
-    for title, subtitle, date in zip(indeed_titles, subtitles, dates):
+    results_text.insert(tk.END, "Résultats de la recherche sur thirdsite:\n\n")
+    for title, subtitle, date in zip(thirdsite_titles, subtitles, dates):
         results_text.insert(tk.END, f"{title.text}\n{subtitle.text}\n{date.text}\n__________\n")
 
 # Define the send function to send an email
 def send():
     # Create the message object
     msg = MIMEMultipart()
-    
+"""    
+    # changer/recuperer la class du btn d'envoie  - envoie pdf en scr du projet
     # Set the sender, recipient, and subject
     msg['From'] = 'your_email@example.com'
     msg['To'] = 'recipient@example.com'
     msg['Subject'] = 'CV groupé'
     
     # Set the message body
-    body = 'Bonjour,\n\nJe vous envoie mon CV pour postuler à des offres d\'emploi. Merci de prendre le temps de le consulter.\n\nCordialement,\n\nVotre nom'
+    body = 'Bonjour,\n\nJe vous envoie mon CV pour postuler à votre offres d\'emploi. Merci de prendre le temps de le consulter.\n\nCordialement,\n\nVotre nom'
     msg.attach(MIMEText(body))
     
     # Connect to the SMTP server
@@ -75,10 +77,10 @@ def send():
     
     # Disconnect from the SMTP server
     server.quit()
-    
+"""    
     
 root = tk.Tk()
-root.title("Recherche d'emploi")
+root.title("Recherche d'emploi multiplatform en un click")
 #root.iconbitmap(r'icon_1.ico')
 #photo=PhotoImage(file="presentation.png")
 root.config(bg="#457b9d")  # définit la couleur de fond en gris clair

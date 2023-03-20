@@ -1,7 +1,10 @@
-﻿<h1>Scrapping des annonces emploi</h1>
+﻿<h1>Scrapping des annonces emploi sur trois sites en un click</h1>
 
 
-<h6>version test </h6>
+<h6>version test #bug  </h6>
+
+    bug de l'input location
+    bug secondsite_url & thirdsite_url
 
 <img width="508" alt="location" src="https://user-images.githubusercontent.com/61543927/226221314-76057d8b-5f2f-47a1-a07b-ea6e9630cdcb.png">
 
