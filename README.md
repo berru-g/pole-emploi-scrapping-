@@ -6,7 +6,7 @@
 <h6>list bug:</h6>
 
     input location
-    secondsite_url & thirdsite_url*
+    secondsite_url & thirdsite_url -  /repertoire number
 
 
 <img width="497" alt="interface (2)" src="https://user-images.githubusercontent.com/61543927/226380254-d6010932-0320-433e-8787-03a2085201d6.png">
