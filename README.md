@@ -8,8 +8,8 @@
     input location
     secondsite_url & thirdsite_url*
 
+<img width="496" alt="interface" src="https://user-images.githubusercontent.com/61543927/226321160-0c01a69c-74b0-4963-a57b-cf7b27a8b912.png">
 
-<img width="508" alt="location" src="https://user-images.githubusercontent.com/61543927/226221314-76057d8b-5f2f-47a1-a07b-ea6e9630cdcb.png">
 
 <h2>Etapes de recherche et conception</h2>
 
