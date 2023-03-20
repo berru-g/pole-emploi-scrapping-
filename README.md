@@ -1,10 +1,13 @@
-﻿<h1>Scrapping des annonces emploi sur trois sites en un click</h1>
+﻿<h1>Scrapping des annonces emplois sur trois sites en un click</h1>
+<h2> + envoie automatique du CV.pdf "en cour"</h2>
+<h2>Script à adapter pour l'envoie de dossier de location d'appartement, reservation de vacance etc...</h2>
 
+<h5>version test v1</h5>
+<h6>list bug:</h6>
 
-<h6>version test #bug  </h6>
+    input location
+    secondsite_url & thirdsite_url*
 
-    bug de l'input location
-    bug secondsite_url & thirdsite_url
 
 <img width="508" alt="location" src="https://user-images.githubusercontent.com/61543927/226221314-76057d8b-5f2f-47a1-a07b-ea6e9630cdcb.png">
 
