@@ -5,12 +5,12 @@
 
 <img width="508" alt="location" src="https://user-images.githubusercontent.com/61543927/226221314-76057d8b-5f2f-47a1-a07b-ea6e9630cdcb.png">
 
-
-<h2>Automatic response to job advertisements containing certain keywords</h2>
+<h2>Etapes de recherche et conception</h2>
 
 <h3>Etapes:</h3>
 
-<p>1 - Inscription Linkedin <a href="https://developer.linkedin.com/">For developer.</p>
+<p>1 - Inscription Linkedin <a href="https://developer.linkedin.com/">For developer. </a>pour la clef API.</p>
+<p> puis teste multiplatform sur pole emploi ( attention au strike), Indeed et lesjeudis.com</p>
 
 <p>2 - Install lib</p>
 
