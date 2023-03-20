@@ -13,16 +13,39 @@ def search():
     job = job_entry.get()
     location = location_entry.get()
     poleemploi_url = "https://candidat.pole-emploi.fr/offres/recherche?&motsCles={}&lieux{}&offresPartenaires=true&rayon=10&tri=0"
+    jeudisdotcom_url = "https://www.lesjeudis.com/recherche?keywords={}&location={}"
+    indeed_url = "https://fr.indeed.com/emplois?q={}&l={}&vjk=52ed5b81115cbba2"
+    # search popol
     poleemploi_search = requests.get(poleemploi_url.format(job, location))
     poleemploi_soup = BeautifulSoup(poleemploi_search.text, "html.parser")
     poleemploi_titles = poleemploi_soup.find_all(class_="media-heading-title")
     subtitles = poleemploi_soup.find_all(class_="subtext")
     dates = poleemploi_soup.find_all(class_="date")
+    # Search jeudisdotcom.com
+    jeudisdotcom_search = requests.get(jeudisdotcom_url.format(job, location))
+    jeudisdotcom_soup = BeautifulSoup(jeudisdotcom_search.text, "html.parser")
+    jeudisdotcom_titles = jeudisdotcom_soup.find_all(class_=["data-results-title.dark-blue-text.b" , "data-results-content block job-listing-item"])
+    #sub class
+    #date class
+    # Search Indeed.com
+    indeed_search = requests.get(indeed_url.format(job, location))
+    indeed_soup = BeautifulSoup(indeed_search.text, "html.parser")
+    indeed_titles = indeed_soup.find_all(id_=["jobTitle-37b88858c4da5049","jobTitle css-1h4a4n5 eu4oa1w0"]) # [.,.] recup une class si l'autre n'existe pas. # [.,.] recup une class si l'autre n'existe pas.
+    #sub class
+    #date class
     
     results_text.delete('1.0', tk.END)  # Effacer le contenu de la zone de texte des résultats précédents
     
     results_text.insert(tk.END, "Résultats de la recherche sur Pole Emploi:\n\n")
     for title, subtitle, date in zip(poleemploi_titles, subtitles, dates):
+        results_text.insert(tk.END, f"{title.text}\n{subtitle.text}\n{date.text}\n__________\n")
+        
+    results_text.insert(tk.END, "Résultats de la recherche les jeudis.com:\n\n")
+    for title, subtitle, date in zip(jeudisdotcom_titles, subtitles, dates):
+        results_text.insert(tk.END, f"{title.text}\n{subtitle.text}\n{date.text}\n__________\n")
+        
+    results_text.insert(tk.END, "Résultats de la recherche sur Indeed:\n\n")
+    for title, subtitle, date in zip(indeed_titles, subtitles, dates):
         results_text.insert(tk.END, f"{title.text}\n{subtitle.text}\n{date.text}\n__________\n")
 
 # Define the send function to send an email
@@ -57,6 +80,8 @@ root = tk.Tk()
 root.title("Recherche d'emploi")
 #root.iconbitmap(r'icon_1.ico')
 #photo=PhotoImage(file="presentation.png")
+root.config(bg="#457b9d")  # définit la couleur de fond en gris clair
+
 
 job_label = tk.Label(root, text="Titre du poste")
 job_label.grid(row=0, column=0, padx=10, pady=10)
