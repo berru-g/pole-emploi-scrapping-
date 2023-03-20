@@ -12,7 +12,7 @@ from email.mime.multipart import MIMEMultipart
 def search():
     job = job_entry.get()
     location = location_entry.get()
-    poleemploi_url = "https://candidat.pole-emploi.fr/offres/recherche?&motsCles={}&lieux{}&offresPartenaires=true&rayon=10&tri=0"
+    poleemploi_url = "https://candidat.pole-emploi.fr/offres/recherche?&motsCles={}&lieux{}&offresPartenaires=true&rayon=10&tri=0" # 'location' not taken into account. because not "=" in url? 
     jeudisdotcom_url = "https://www.lesjeudis.com/recherche?keywords={}&location={}"
     indeed_url = "https://fr.indeed.com/emplois?q={}&l={}&vjk=52ed5b81115cbba2"
     # search popol
