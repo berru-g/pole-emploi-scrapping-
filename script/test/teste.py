@@ -1,4 +1,4 @@
-import os
+"""import os
 import webbrowser
 
 def open_private_browser(url):
@@ -30,3 +30,46 @@ elif reponse_web.lower() == "non":
 else:
     # Afficher un message si la réponse n'est ni "oui" ni "non"
     print("Je ne comprends pas votre réponse.")
+"""
+import tkinter as tk
+import requests
+from bs4 import BeautifulSoup
+
+# Création de la fenêtre
+root = tk.Tk()
+root.geometry("600x400")
+root.title("Résultats de recherche")
+
+# Définition des couleurs
+title_color = "#FF5733"
+subtitle_color = "#900C3F"
+date_color = "#C70039"
+
+# Fonction pour récupérer les résultats de recherche
+def get_results():
+    # Efface le texte précédent
+    results_text.delete("1.0", tk.END)
+
+    # Récupère les résultats de recherche
+    url = "https://www.lemonde.fr/recherche/?keywords=python"
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, "html.parser")
+    results = soup.find_all("div", class_="SearchResults--item")
+
+    # Affiche les résultats de recherche avec les couleurs spécifiées
+    for result in results:
+        title = result.find("h3", class_="ArticleItem--title")
+        subtitle = result.find("div", class_="ArticleItem--excerpt")
+        date = result.find("time", class_="ArticleItem--date")
+        results_text.insert(tk.END, f"{title.text}\n", "title")
+        results_text.insert(tk.END, f"{subtitle.text}\n", "subtitle")
+        results_text.insert(tk.END, f"{date.text}\n", "date")
+        results_text.insert(tk.END, "__________\n")
+    
+    # Applique les couleurs
+    results_text.tag_config("title", foreground=title_color)
+    results_text.tag_config("subtitle", foreground=subtitle_color)
+    results_text.tag_config("date", foreground=date_color)
+
+# Frame pour les résultats de recherche
+results_frame = tk.Frame(root)
