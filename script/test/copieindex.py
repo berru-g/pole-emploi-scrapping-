@@ -37,13 +37,13 @@ def search():
     time.sleep(1)
     
     # Search secondsite.com
-    secondsite_url ="https://www.hellowork.com/fr-fr/emploi/recherche.html?k={}&k_autocomplete=&l={}&l_autocomplete=&ray=20&msa=&d=all&c_idesegal="               
+    secondsite_url ="https://www.jobijoba.com/fr/query/?what={}&where={}&where_type=city"               
     secondsite_search = requests.get(secondsite_url.format(job,location))
     secondsite_soup = BeautifulSoup(secondsite_search.text, "html.parser")
-    secondsite_titles = secondsite_soup.find_all(class_="tw-flex tw-flex-wrap")
-    secondsite_subtitles = secondsite_soup.find_all(class_="tw-mt-3")#md:tw-text-xlOld tw-text-2xlOld tw-leading-[1.625rem]
-    secondsite_dates = secondsite_soup.find_all(class_="publishDate")
-    results_text.insert(tk.END, "Résultats de la recherche les jeudis.com:\n\n", "blue")
+    secondsite_titles = secondsite_soup.find_all(class_="offer-header-title")
+    secondsite_subtitles = secondsite_soup.find_all(class_="description")#md:tw-text-xlOld tw-text-2xlOld tw-leading-[1.625rem]
+    secondsite_dates = secondsite_soup.find_all(class_="text-primary publication_date")
+    results_text.insert(tk.END, "Résultats de la recherche jobijoba:\n\n", "blue")
     results_text.tag_configure("blue", foreground="blue")
     for title, subtitle, date in zip(secondsite_titles, secondsite_subtitles, secondsite_dates):
         results_text.insert(tk.END, f"{title.text}\n{subtitle.text}\n{date.text}\n__________\n")
@@ -51,7 +51,7 @@ def search():
     time.sleep(1)   
     
     # Search thirdsite.com
-    thirdsite_url = "https://fr.indeed.com/emplois?q={}&l={}&vjk="
+    thirdsite_url = "https://fr.indeed.com/emplois?q={}&l={}"
     thirdsite_search = requests.get(thirdsite_url.format(job,location))
     thirdsite_soup = BeautifulSoup(thirdsite_search.text, "html.parser")
     thirdsite_titles = thirdsite_soup.find_all(class_="jcs-JobTitle-css-jspxzf-eu4oa1w0") # [.,.] recup une class si l'autre n'existe pas. # [.,.] recup une class si l'autre n'existe pas. 
