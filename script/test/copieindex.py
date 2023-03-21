@@ -4,6 +4,7 @@
 """
 import tkinter as tk
 import time
+import datetime
 import requests
 from bs4 import BeautifulSoup
 
@@ -13,8 +14,8 @@ root.title("Recherche d'emploi multiplatform en un click")
 #p1 = tk.PhotoImage(file = 'src\logo.png')
 #root.iconphoto(False, p1)
 root.config(bg="#1d3557") 
-title_color = "#2a9d8f"
-subtitle_color = "#1d3557"
+title_color = "#1d3557"
+subtitle_color = "#2a9d8f"
 date_color = "#f4a261"
 
 job_label = tk.Label(root, text="Rechercher métier:", foreground="#f1faee")
@@ -57,8 +58,7 @@ def search():
     results_text.tag_config("subtitle", foreground=subtitle_color)
     results_text.tag_config("date", foreground=date_color)
     print("resultat first site")
-    time.sleep(1)
-    
+    time.sleep(1) 
     # Search secondsite.com
     secondsite_url ="https://www.jobijoba.com/fr/query/?what={}&where={}&where_type=city"               
     secondsite_search = requests.get(secondsite_url.format(job,location))
@@ -91,6 +91,27 @@ def search():
         results_text.insert(tk.END, "__________\n")
     print("resultat third site")
     time.sleep(1)    
+# Comparaison des dates
+    if dates:
+        latest_date = compare_dates(dates)
+        print("La dernière date trouvée sur le site de recherche est:", latest_date)
+
+    if secondsite_dates:
+        latest_date = compare_dates(secondsite_dates)
+        print("La dernière date trouvée sur le premier site est:", latest_date)
+
+    if thirdsite_dates:
+        latest_date = compare_dates(thirdsite_dates)
+        print("La dernière date trouvée sur le troisième site est:", latest_date)
+     
+def compare_dates(date_list):
+    
+    latest_date = None
+    for date_str in date_list:
+        date = datetime.strptime(date_str, '%Y-%m-%d')
+        if latest_date is None or date > latest_date:
+            latest_date = date
+    return latest_date.strftime('%Y-%m-%d')
 
 search_button = tk.Button(root, text="Rechercher", command=search)
 search_button.grid(row=2, column=0, columnspan=2, padx=10, pady=10)
