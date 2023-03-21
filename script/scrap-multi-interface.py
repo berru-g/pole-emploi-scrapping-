@@ -20,7 +20,7 @@ def search():
     
     firstsite_url = "https://candidat.pole-emploi.fr/offres/recherche?&motsCles={}&lieux{}&offresPartenaires=true&rayon=10&tri=0" # 'location' not taken into account. because not "=" in url? 
     secondsite_url ="https://www.hellowork.com/fr-fr/emploi/recherche.html?k={}&k_autocomplete=&l={}&l_autocomplete=&ray=20&msa=&d=all&c_idesegal="               
-    thirdsite_url = "https://fr.indeed.com/emplois?q={}&l={}&vjk=458b26ad3b4af9fb"
+    thirdsite_url = "https://fr.indeed.com/emplois?q={}&l={}&vjk="
     # search firstsite.com  # bug de la requete 'location', essaie d'inverser lieux et motcles comme dans lurl dorigine, puis change l'ordre de format, job, location= sans succes
     firstsite_search = requests.get(firstsite_url.format(job,location))
     firstsite_soup = BeautifulSoup(firstsite_search.text, "html.parser")
@@ -32,15 +32,13 @@ def search():
     secondsite_soup = BeautifulSoup(secondsite_search.text, "html.parser")
     secondsite_titles = secondsite_soup.find_all(class_="tw-flex tw-flex-wrap")
     secondsite_subtitles = secondsite_soup.find_all(class_="tw-mt-3")#md:tw-text-xlOld tw-text-2xlOld tw-leading-[1.625rem]
-    secondsite_dates = secondsite_soup.find_all(class_="publishDate")
-     
+    secondsite_dates = secondsite_soup.find_all(class_="publishDate")   
     # Search thirdsite.com
     thirdsite_search = requests.get(thirdsite_url.format(job,location))
     thirdsite_soup = BeautifulSoup(thirdsite_search.text, "html.parser")
     thirdsite_titles = thirdsite_soup.find_all(class_="jcs-JobTitle-css-jspxzf-eu4oa1w0") # [.,.] recup une class si l'autre n'existe pas. # [.,.] recup une class si l'autre n'existe pas.
     #sub class
-    #date class
-    
+    #date class 
     results_text.delete('1.0', tk.END)  # Effacer le contenu de la zone de texte des résultats précédents
     results_text.insert(tk.END, "Résultats de la recherche sur Pole Emploi:\n\n", "blue")
     results_text.tag_configure("blue", foreground="blue")
@@ -54,16 +52,16 @@ def search():
     time.sleep(1)    
     results_text.insert(tk.END, "Résultats de la recherche sur Indeed:\n\n", "blue")
     results_text.tag_configure("blue", foreground="#1d3557")
-    for title, subtitle, date in zip(thirdsite_titles, subtitles, dates):
-        results_text.insert(tk.END, f"{title.text}\n{subtitle.text}\n{date.text}\n__________\n")
+    for title in zip(thirdsite_titles):
+        results_text.insert(tk.END, f"{title.text}")
         
 
 
 root = tk.Tk()
 root.title("Recherche d'emploi multiplatform en un click")
 #root.iconbitmap('src\logo.png')
-p1 = tk.PhotoImage(file = 'src\logo.png')
-root.iconphoto(False, p1)
+#p1 = tk.PhotoImage(file = 'src\logo.png')
+#root.iconphoto(False, p1)
 root.config(bg="#1d3557")  # définit la couleur de fond en gris clair
 
 job_label = tk.Label(root, text="Rechercher métier:", foreground="#f1faee")

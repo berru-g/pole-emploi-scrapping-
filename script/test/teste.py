@@ -50,7 +50,7 @@ if reponse.lower() == "oui":
     # Vérifier si le fichier existe
     if os.path.isfile(nom_fichier):
         # Ouvrir le fichier
-        with open(nom_fichier, 'r') as f:
+        with open(nom_fichier, 'src\githubdotcomberru-g.pdf') as f:
             contenu = f.read()
             print(contenu)
     else:

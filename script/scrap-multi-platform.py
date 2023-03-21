@@ -19,8 +19,8 @@ location = input("")
 # URL templates for each site
 #poleemploi_url = "https://candidat.pole-emploi.fr/offres/recherche?lieux={}&motsCles={}&offresPartenaires=true&rayon=10&tri=0"
 poleemploi_url = "https://candidat.pole-emploi.fr/offres/recherche?&motsCles={}&lieux{}&offresPartenaires=true&rayon=10&tri=0"
-jeudisdotcom_url = "https://www.lesjeudis.com/recherche?keywords={}&location={}"
-indeed_url = "https://fr.indeed.com/emplois?q={}&l={}&vjk=52ed5b81115cbba2"
+jeudisdotcom_url = "https://www.lesjeudis.com/recherche?keywords={}&location={}&l_autocomplete=&ray=20&msa=&d=all&c_idesegal="
+indeed_url = "https://fr.indeed.com/emplois?q={}&l={}&vjk="
 
 # Search Pole Emploi
 poleemploi_search = requests.get(poleemploi_url.format(job, location))
