@@ -5,13 +5,14 @@
 <h5>version test v1</h5>
 <h6>list bug:</h6>
 
-    input location [v]
-    secondsite_url & thirdsite_url -  /repertoire number [v]
+    [x] - input location 
+    [x] - secondsite_url & thirdsite_url -  /repertoire number 
     
-<img width="497" alt="resultat1" src="https://user-images.githubusercontent.com/61543927/226643513-65cc5284-9e30-4279-92e2-1967e7f34b02.png">
+ 
+<img width="496" alt="resultat1" src="https://user-images.githubusercontent.com/61543927/226693424-b2b4535c-4031-411b-84f0-754326991ee0.png">
 
+<img width="499" alt="resultat2" src="https://user-images.githubusercontent.com/61543927/226693541-f3fc4b69-d548-452a-88d0-5c4f3bb7a163.png">
 
-<img width="497" alt="interface (2)" src="https://user-images.githubusercontent.com/61543927/226643597-6f55f9bf-51b2-4cb6-a7a8-967a4ef2a789.png">
 
 
 <h2>Etapes de recherche et conception</h2>
