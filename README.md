@@ -7,7 +7,9 @@
 
     [x] - input location 
     [x] - secondsite_url & thirdsite_url -  /repertoire number 
-    
+
+<p>Version terminal plus sexy et version site <a href="https://github.com/berru-g/OTTO-TOOLS/tree/main/scrap">dans OTTO-TOOLS<a/> </p>
+
  
 <img width="496" alt="resultat1" src="https://user-images.githubusercontent.com/61543927/226693424-b2b4535c-4031-411b-84f0-754326991ee0.png">
 
